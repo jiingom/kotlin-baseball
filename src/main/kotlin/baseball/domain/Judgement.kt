@@ -10,4 +10,8 @@ class Judgement {
         }
         return result
     }
+
+    fun hasPlace(computer: List<Int>, placeIndex: Int, number: Int): Boolean {
+        return computer[placeIndex] == number
+    }
 }
