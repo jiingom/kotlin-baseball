@@ -16,7 +16,6 @@ class GameController {
 
     private fun gameProgress(numbers: List<Int>) {
         var flag = false
-        println(numbers)
         while (!flag) {
             val playerInput = InputView().inputPlayerNumbers()
             flag = Referee().compare(numbers, playerInput)
