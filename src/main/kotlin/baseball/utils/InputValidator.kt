@@ -3,6 +3,7 @@ package baseball.utils
 class InputValidator {
     fun validatePlayerNumbers(inputPlayerNumber: String): List<Int> {
         val numbers = mutableListOf<Int>()
+        doesHaveDuplicated(inputPlayerNumber)
         for (i in inputPlayerNumber) {
             if (isNumber(i.toString()) && i.toString() != "0") {
                 numbers.add(Character.getNumericValue(i))
@@ -25,6 +26,12 @@ class InputValidator {
 
     private fun isNumber(s: String): Boolean {
         return if (s.isNullOrEmpty()) false else s.all { Character.isDigit(it) }
+    }
+
+    private fun doesHaveDuplicated(inputPlayerNumber: String) {
+        if (inputPlayerNumber.toSet().size != 3) {
+            throw IllegalArgumentException("[ERROR]: 서로 다른 3자리의 수를 입력해야 합니다.")
+        }
     }
 
     private fun isValidRange(inputPlayerNumbers: List<Int>): Boolean {
