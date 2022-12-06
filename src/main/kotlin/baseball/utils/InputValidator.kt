@@ -12,6 +12,17 @@ class InputValidator {
         return numbers
     }
 
+    fun validateRetryNumber(inputCommand: String): Boolean {
+        val command = inputCommand.toInt()
+        if (command == 1) {
+            return true
+        }
+        if (command == 2) {
+            return false
+        }
+        throw IllegalArgumentException("[ERROR]: 1과 2 중 하나의 숫자만 입력받을 수 있습니다.")
+    }
+
     private fun isNumber(s: String): Boolean {
         return if (s.isNullOrEmpty()) false else s.all { Character.isDigit(it) }
     }
