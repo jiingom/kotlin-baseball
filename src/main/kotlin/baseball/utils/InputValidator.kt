@@ -1,29 +1,25 @@
 package baseball.utils
 
 class InputValidator {
-    fun isCorrectPlayerNumbers(inputPlayerNumber: String): List<String> {
-        val inputPlayerNums = inputPlayerNumber.split("")
-        isValidRange(inputPlayerNums)
-        isCorrectPlayerNumbers(inputPlayerNums)
-        return inputPlayerNums
+    fun validatePlayerNumbers(inputPlayerNumber: String): List<Int> {
+        val numbers = mutableListOf<Int>()
+        for (i in inputPlayerNumber) {
+            if (isNumber(i.toString()) && i.toString() != "0") {
+                numbers.add(Character.getNumericValue(i))
+            }
+        }
+        isValidRange(numbers)
+        return numbers
     }
 
-    private fun isNumber(s: String?): Boolean {
+    private fun isNumber(s: String): Boolean {
         return if (s.isNullOrEmpty()) false else s.all { Character.isDigit(it) }
     }
 
-    private fun isValidRange(inputPlayerNumbers: List<String>): Boolean {
+    private fun isValidRange(inputPlayerNumbers: List<Int>): Boolean {
         if (inputPlayerNumbers.size != 3) {
-            throw IllegalArgumentException("[ERROR]")
+            throw IllegalArgumentException("[ERROR]: 1~9 사이의 3자리 숫자만 입력받을 수 있습니다.")
         }
         return true
-    }
-
-    private fun isCorrectPlayerNumbers(inputPlayerNumbers: List<String>) {
-        for (number in inputPlayerNumbers) {
-            if (!isNumber(number)) {
-                throw IllegalArgumentException("[ERROR]")
-            }
-        }
     }
 }
