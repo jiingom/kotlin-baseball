@@ -16,4 +16,10 @@ internal class InputValidatorTest {
     fun `3자리의 수가 아닌 경우 예외가 발생한다`(input: String) {
         assertThrows<IllegalArgumentException> { InputValidator().validatePlayerNumbers(input) }
     }
+
+    @ValueSource(strings = ["12", "1234"])
+    @ParameterizedTest
+    fun `1과 2 외의 다른 값이 입력될 경우 예외가 발생한다`(input: String) {
+        assertThrows<IllegalArgumentException> { InputValidator().validateRetryNumber(input) }
+    }
 }
