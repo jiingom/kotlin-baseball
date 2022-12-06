@@ -22,4 +22,10 @@ internal class InputValidatorTest {
     fun `1과 2 외의 다른 값이 입력될 경우 예외가 발생한다`(input: String) {
         assertThrows<IllegalArgumentException> { InputValidator().validateRetryNumber(input) }
     }
+
+    @ValueSource(strings = ["111", "222"])
+    @ParameterizedTest
+    fun `중복된 값이 입력될 경우 예외가 발생한다`(input: String) {
+        assertThrows<IllegalArgumentException> { InputValidator().validatePlayerNumbers(input) }
+    }
 }
